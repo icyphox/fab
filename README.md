@@ -11,7 +11,7 @@ echo que("what?")
 ```
 
 ## Colors
-![colors](https://xix.ph0x.me/colors.png)
+![colors](https://xix.ph0x.me/colorss.png)
 
 ## Styles
 ![styles](https://xix.ph0x.me/styles.png)
