@@ -18,6 +18,10 @@ proc bold*(s: string): string =
 proc italic*(s: string): string =
   result = "\e[3m" & s & "\e[0m"
 
+proc under*(s: string): string =
+  result = "\e[4m" & s & "\e[0m"
+
+
 # labels
 proc que*(s: string): string =
   result = "\e[34m[?] \e[0m" & s
