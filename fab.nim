@@ -5,6 +5,9 @@ proc blue*(s: string): string =
 proc yellow*(s: string): string =
   result = "\e[33m" & s & "\e[0m"
 
+proc green*(s: string): string =
+  result = "\e[32m" & s & "\e[0m"
+
 # styles
 proc bold*(s: string): string =
   result = "\e[1m" & s & "\e[0m"
