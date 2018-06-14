@@ -11,6 +11,13 @@ proc green*(s: string): string =
 proc red*(s: string): string =
   result = "\e[31m" & s & "\e[0m"
 
+proc white*(s: string): string =
+  result = "\e[37m" & s & "\e[0m"
+
+# TODO: orange is bold yellow lol
+proc orange*(s: string): string =
+  result = "\e[93;1m" & s & "\e[0m"
+
 # styles
 proc bold*(s: string): string =
   result = "\e[1m" & s & "\e[0m"
