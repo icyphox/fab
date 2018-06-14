@@ -29,3 +29,5 @@ proc que*(s: string): string =
 proc info*(s: string): string =
   result = "\e[33m[*] \e[0m" & s
 
+proc bad*(s: string): string =
+  result = "\e[31m[!] \e[0m" & s
