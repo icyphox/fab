@@ -12,10 +12,11 @@ echo "Styles:"
 echo bold("this is bold")
 echo italic("this is italic")
 echo under("this is underlined")
+echo strike("this is striked")
 echo ""
 echo "Labels:"
 echo que("what?")
 echo info("fyi")
 echo bad("you suck")
 echo good("yay!")
-
+echo run("hacking in progress...")
