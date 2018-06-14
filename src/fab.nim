@@ -24,6 +24,9 @@ proc purple*(s: string): string =
 proc black*(s: string): string =
   result = "\e[30;1m" & s & "\e[0m"
 
+proc cyan*(s: string): string =
+  result = "\e[36m" & s & "\e[0m"
+
 # styles
 proc bold*(s: string): string =
   result = "\e[1m" & s & "\e[0m"
