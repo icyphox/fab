@@ -18,6 +18,12 @@ proc white*(s: string): string =
 proc orange*(s: string): string =
   result = "\e[93;1m" & s & "\e[0m"
 
+proc purple*(s: string): string =
+  result = "\e[35m" & s & "\e[0m"
+
+proc black*(s: string): string =
+  result = "\e[30;1m" & s & "\e[0m"
+
 # styles
 proc bold*(s: string): string =
   result = "\e[1m" & s & "\e[0m"
