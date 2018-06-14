@@ -6,6 +6,8 @@ Fab is a really cool text formatting package for Nim. Using Fab is super easy, i
 import fab
 
 echo blue("hey i'm blue!")
+echo bold("this is bold text")
+echo que("what?")
 ```
 
 ## Colors
@@ -17,5 +19,14 @@ echo blue("hey i'm blue!")
 ## Labels
 ![labels](https://xix.ph0x.me/labels.png)
 
+### Color procs
+`blue(), yellow(), red(), green(), white(), orange()(WIP)`
 
+### Style procs
+`bold(), italics(), strike(), under()`
 
+### Label procs
+`que(), info(), run(), bad(), good()`
+
+## Inspiration
+This project was heavily inspired by @s0md3v's [Hue](https://github.com/s0md3v/hue)
