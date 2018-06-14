@@ -17,5 +17,5 @@ proc italic*(s: string): string =
 
 # labels
 proc que*(s: string): string =
-  result = "\e[33;1m[?] \e[0m" & s
+  result = "\e[34m[?] \e[0m" & s
 
