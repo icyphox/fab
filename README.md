@@ -21,7 +21,7 @@ echo que("what?")
 
 ### Color procs
 ```
-blue(), yellow(), red(), green(), white(), orange()(WIP)
+blue(), yellow(), red(), green(), white(), purple(), black(), cyan()
 ```
 
 ### Style procs
