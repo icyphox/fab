@@ -8,6 +8,9 @@ proc yellow*(s: string): string =
 proc green*(s: string): string =
   result = "\e[32m" & s & "\e[0m"
 
+proc red*(s: string): string =
+  result = "\e[31m" & s & "\e[0m"
+
 # styles
 proc bold*(s: string): string =
   result = "\e[1m" & s & "\e[0m"
