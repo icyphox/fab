@@ -12,7 +12,7 @@ echo blue("hey i'm blue!")
 ![colors](https://xix.ph0x.me/colors.png)
 
 ## Styles
-![styles](https://xix.ph0x.me/colors.png)
+![styles](https://xix.ph0x.me/styles.png)
 
 ## Labels
 ![labels](https://xix.ph0x.me/labels.png)
