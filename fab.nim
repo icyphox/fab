@@ -19,3 +19,6 @@ proc italic*(s: string): string =
 proc que*(s: string): string =
   result = "\e[34m[?] \e[0m" & s
 
+proc info*(s: string): string =
+  result = "\e[33m[*] \e[0m" & s
+
