@@ -10,6 +10,12 @@ echo bold("this is bold text")
 echo que("what?")
 ```
 
+## Installation
+```console
+$ nimble install fab
+```
+**NOTE**: There is no Windows support (yet).
+
 ## Colors
 ![colors](https://xix.ph0x.me/colorss.png)
 
