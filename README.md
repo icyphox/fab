@@ -8,3 +8,14 @@ import fab
 echo blue("hey i'm blue!")
 ```
 
+## Colors
+![colors](https://xix.ph0x.me/colors.png)
+
+## Styles
+![styles](https://xix.ph0x.me/colors.png)
+
+## Labels
+![labels](https://xix.ph0x.me/labels.png)
+
+
+
