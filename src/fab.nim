@@ -46,4 +46,4 @@ proc good*(s: string): string =
   result = "\e[32m[+] \e[0m" & s
 
 proc run*(s: string): string =
-  result = "\e[37m[~] \e[0m" & s
+  result = "\e[97m[~] \e[0m" & s
