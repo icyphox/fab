@@ -7,6 +7,8 @@ echo yellow("this is yellow")
 echo green("this is green")
 echo white("this is white")
 echo orange("this is orange")
+echo purple("this is purple")
+echo black("this is black")
 echo ""
 echo "Styles:"
 echo bold("this is bold")
