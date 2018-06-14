@@ -9,6 +9,7 @@ echo white("this is white")
 echo orange("this is orange")
 echo purple("this is purple")
 echo black("this is black")
+echo cyan("this is cyan")
 echo ""
 echo "Styles:"
 echo bold("this is bold")
