@@ -31,3 +31,6 @@ proc info*(s: string): string =
 
 proc bad*(s: string): string =
   result = "\e[31m[!] \e[0m" & s
+
+proc good*(s: string): string =
+  result = "\e[32m[+] \e[0m" & s
