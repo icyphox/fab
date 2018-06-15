@@ -1,3 +1,5 @@
+import terminal
+
 const reset = "\e[0m"
 
 # colors
@@ -44,20 +46,26 @@ proc strike*(s: string): string =
 
 
 # labels
-proc que*(s: string): string =
-  result = blue("[?] ") & reset & s
+template fabLabeledEcho*(fg: ForegroundColor; label: string; args: varargs[untyped]) =
+  setForeGroundColor(fg)
+  stdout.write(label)
+  resetAttributes()
+  echo " " & args
 
-proc info*(s: string): string =
-  result = yellow("[*] ") & reset & s
+template que*(s: string) =
+  fabLabeledEcho(fgBlue, "[?]", s)
 
-proc bad*(s: string): string =
-  result = red("[!] ") & reset & s
+template info*(s: string) =
+  fabLabeledEcho(fgYellow, "[!]", s)
 
-proc good*(s: string): string =
-  result = green("[+] ") & reset & s
+template bad*(s: string) =
+  fabLabeledEcho(fgRed, "[!]", s)
 
-proc run*(s: string): string =
-  result = white("[~] ") & reset & s
+template good*(s: string) =
+  fabLabeledEcho(fgGreen, "[+]", s)
+
+template run*(s: string) =
+  fabLabeledEcho(fgWhite, "[~]", s)
 
 when isMainModule:
   echo "Colors:"
@@ -77,9 +85,10 @@ when isMainModule:
   echo under("this is underlined")
   echo strike("this is striked")
   echo ""
+
   echo "Labels:"
-  echo que("what?")
-  echo info("fyi")
-  echo bad("you suck")
-  echo good("yay!")
-  echo run("hacking in progress...")
+  que("what?")
+  info("fyi")
+  bad("you suck")
+  good("yay!")
+  run("hacking in progress...")
