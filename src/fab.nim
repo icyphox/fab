@@ -1,5 +1,11 @@
 import terminal
 
+template fabEcho*(fg: ForegroundColor; styled: string; unstyled: varargs[untyped] = "") =
+  setForeGroundColor(fg)
+  stdout.write(styled)
+  resetAttributes()
+  echo " " & unstyled
+
 const reset = "\e[0m"
 
 # colors
@@ -46,26 +52,20 @@ proc strike*(s: string): string =
 
 
 # labels
-template fabLabeledEcho*(fg: ForegroundColor; label: string; args: varargs[untyped]) =
-  setForeGroundColor(fg)
-  stdout.write(label)
-  resetAttributes()
-  echo " " & args
-
 template que*(s: string) =
-  fabLabeledEcho(fgBlue, "[?]", s)
+  fabEcho(fgBlue, "[?]", s)
 
 template info*(s: string) =
-  fabLabeledEcho(fgYellow, "[!]", s)
+  fabEcho(fgYellow, "[!]", s)
 
 template bad*(s: string) =
-  fabLabeledEcho(fgRed, "[!]", s)
+  fabEcho(fgRed, "[!]", s)
 
 template good*(s: string) =
-  fabLabeledEcho(fgGreen, "[+]", s)
+  fabEcho(fgGreen, "[+]", s)
 
 template run*(s: string) =
-  fabLabeledEcho(fgWhite, "[~]", s)
+  fabEcho(fgWhite, "[~]", s)
 
 when isMainModule:
   echo "Colors:"
