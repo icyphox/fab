@@ -32,19 +32,19 @@ template fabEcho*(fg: ForegroundColor; styleSet: set[Style] = {}; styled, unstyl
 const reset = "\e[0m"
 
 # colors
-template blue*(s: string; sty: set[Style] = {}; nl: bool = true) =
+template blue*(s: string; sty: set[Style] = {}; nl = true) =
   fabEcho(fgBlue, styleSet = sty, styled = s, newline = nl)
 
-template yellow*(s: string; sty: set[Style] = {}; nl: bool = true) =
+template yellow*(s: string; sty: set[Style] = {}; nl = true) =
   fabEcho(fgYellow, styleSet = sty, styled = s, newline = nl)
 
-template green*(s: string; sty: set[Style] = {}; nl: bool = true) =
+template green*(s: string; sty: set[Style] = {}; nl = true) =
   fabEcho(fgGreen, styleSet = sty, styled = s, newline = nl)
 
-template red*(s: string; sty: set[Style] = {}; nl: bool = true) =
+template red*(s: string; sty: set[Style] = {}; nl = true) =
   fabEcho(fgRed, styleSet = sty, styled = s, newline = nl)
 
-template white*(s: string; sty: set[Style] = {}; nl: bool = true) =
+template white*(s: string; sty: set[Style] = {}; nl = true) =
   fabEcho(fgWhite, styleSet = sty, styled = s, newline = nl)
 
 # # TODO: orange is bold yellow lol
@@ -60,44 +60,48 @@ template white*(s: string; sty: set[Style] = {}; nl: bool = true) =
 # proc cyan*(s: string): string =
 #   result = "\e[36m" & s & reset
 
-# # styles
-# proc bold*(s: string): string =
-#   result = "\e[1m" & s & reset
+# styles
+template bold*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabEcho(fg, styleSet = {styleBright} + sty, styled = s, newline = nl)
 
-# proc italic*(s: string): string =
-#   result = "\e[3m" & s & reset
+template italic*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabEcho(fg, styleSet = {styleReverse} + sty, styled = s, newline = nl)
 
-# proc under*(s: string): string =
-#   result = "\e[4m" & s & reset
+template under*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabEcho(fg, styleSet = {styleUnderscore} + sty, styled = s, newline = nl)
+
+template blink*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabEcho(fg, styleSet = {styleBlink} + sty, styled = s, newline = nl)
 
 # proc strike*(s: string): string =
 #   result = "\e[9m" & s & reset
 
 
 # labels
-template que*(s: string) =
-  fabEcho(fgBlue, styled = "[?]", unstyled = s, newline = true)
+template que*(s: string; nl = true) =
+  fabEcho(fgBlue, styled = "[?]", unstyled = s, newline = nl)
 
-template info*(s: string) =
-  fabEcho(fgYellow, styled = "[!]", unstyled = s, newline = true)
+template info*(s: string; nl = true) =
+  fabEcho(fgYellow, styled = "[!]", unstyled = s, newline = nl)
 
-template bad*(s: string) =
-  fabEcho(fgRed, styled = "[!]", unstyled = s, newline = true)
+template bad*(s: string; nl = true) =
+  fabEcho(fgRed, styled = "[!]", unstyled = s, newline = nl)
 
-template good*(s: string) =
-  fabEcho(fgGreen, styled = "[+]", unstyled = s, newline = true)
+template good*(s: string; nl = true) =
+  fabEcho(fgGreen, styled = "[+]", unstyled = s, newline = nl)
 
-template run*(s: string) =
-  fabEcho(fgWhite, styled = "[~]", unstyled = s, newline = true)
+template run*(s: string; nl = true) =
+  fabEcho(fgWhite, styled = "[~]", unstyled = s, newline = nl)
 
 when isMainModule:
   echo "Colors:"
   blue("this is blue")
-  blue("this is bold blue", {styleBright})
+  blue("this is bold blue", sty = {styleBright})
 
   blue("this is blue", nl = false) # no newline
-  blue(" this is bold blue ", {styleBright}, false) # no newline
-  blue("this is blue")
+  yellow(" this is bold yellow ", sty = {styleBright}, nl = false) # no newline
+  blue("this is bold and underlined blue", sty = {styleBright, styleUnderscore}, nl = false) # no newline
+  blue(" this is blue")
 
   red("this is green")
   yellow("this is yellow")
@@ -108,10 +112,15 @@ when isMainModule:
   # echo black("this is black")
   # echo cyan("this is cyan")
   # echo ""
-  # echo "Styles:"
-  # echo bold("this is bold")
-  # echo italic("this is italic")
-  # echo under("this is underlined")
+
+  echo "Styles:"
+  bold("this is bold")
+  italic("this is italic/reverse")
+  under("this is underlined")
+  blink("this is blinking!")
+  italic("this is italics and bold!", sty = {styleBright})
+  bold("this is bold and italics!", sty = {styleReverse})
+  bold("this is bold and italics and red!!", sty = {styleReverse}, fg = fgRed)
   # echo strike("this is striked")
   # echo ""
 
