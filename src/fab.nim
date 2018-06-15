@@ -1,7 +1,27 @@
 import terminal
 
-template fabEcho*(fg: ForegroundColor; sty: set[Style] = {}; styled, unstyled: string = ""; newline: bool = true) =
+# Style = enum
+#   styleBright = 1,            ## bright text
+#   styleDim,                   ## dim text
+#   styleUnknown,               ## unknown
+#   styleUnderscore = 4,        ## underscored text
+#   styleBlink,                 ## blinking/bold text
+#   styleReverse = 7,           ## unknown
+#   styleHidden                 ## hidden text
+
+# ForegroundColor = enum
+#   fgBlack = 30,               ## black
+#   fgRed,                      ## red
+#   fgGreen,                    ## green
+#   fgYellow,                   ## yellow
+#   fgBlue,                     ## blue
+#   fgMagenta,                  ## magenta
+#   fgCyan,                     ## cyan
+#   fgWhite                     ## white
+
+template fabEcho*(fg: ForegroundColor; styleSet: set[Style] = {}; styled, unstyled: string = ""; newline: bool = true) =
   setForeGroundColor(fg)
+  setStyle(styleSet)
   stdout.write(styled)
   resetAttributes()
   if unstyled != "":
@@ -12,20 +32,20 @@ template fabEcho*(fg: ForegroundColor; sty: set[Style] = {}; styled, unstyled: s
 const reset = "\e[0m"
 
 # colors
-template blue*(s: string; nl: bool = true) =
-  fabEcho(fgBlue, styled = s, newline = nl)
+template blue*(s: string; sty: set[Style] = {}; nl: bool = true) =
+  fabEcho(fgBlue, styleSet = sty, styled = s, newline = nl)
 
-template yellow*(s: string; nl: bool = true) =
-  fabEcho(fgYellow, styled = s, newline = nl)
+template yellow*(s: string; sty: set[Style] = {}; nl: bool = true) =
+  fabEcho(fgYellow, styleSet = sty, styled = s, newline = nl)
 
-template green*(s: string; nl: bool = true) =
-  fabEcho(fgGreen, styled = s, newline = nl)
+template green*(s: string; sty: set[Style] = {}; nl: bool = true) =
+  fabEcho(fgGreen, styleSet = sty, styled = s, newline = nl)
 
-template red*(s: string; nl: bool = true) =
-  fabEcho(fgRed, styled = s, newline = nl)
+template red*(s: string; sty: set[Style] = {}; nl: bool = true) =
+  fabEcho(fgRed, styleSet = sty, styled = s, newline = nl)
 
-template white*(s: string; nl: bool = true) =
-  fabEcho(fgWhite, styled = s, newline = nl)
+template white*(s: string; sty: set[Style] = {}; nl: bool = true) =
+  fabEcho(fgWhite, styleSet = sty, styled = s, newline = nl)
 
 # # TODO: orange is bold yellow lol
 # proc orange*(s: string): string =
@@ -73,7 +93,12 @@ template run*(s: string) =
 when isMainModule:
   echo "Colors:"
   blue("this is blue")
-  blue("this is blue", false); blue(" this is blue")
+  blue("this is bold blue", {styleBright})
+
+  blue("this is blue", nl = false) # no newline
+  blue(" this is bold blue ", {styleBright}, false) # no newline
+  blue("this is blue")
+
   red("this is green")
   yellow("this is yellow")
   green("this is green")
