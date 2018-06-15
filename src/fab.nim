@@ -1,6 +1,6 @@
 import terminal
 
-template fabEcho*(fg: ForegroundColor; styled, unstyled: string = ""; newline: bool = true) =
+template fabEcho*(fg: ForegroundColor; sty: set[Style] = {}; styled, unstyled: string = ""; newline: bool = true) =
   setForeGroundColor(fg)
   stdout.write(styled)
   resetAttributes()
@@ -13,19 +13,19 @@ const reset = "\e[0m"
 
 # colors
 template blue*(s: string; nl: bool = true) =
-  fabEcho(fgBlue, s, newline = nl)
+  fabEcho(fgBlue, styled = s, newline = nl)
 
 template yellow*(s: string; nl: bool = true) =
-  fabEcho(fgYellow, s, newline = nl)
+  fabEcho(fgYellow, styled = s, newline = nl)
 
 template green*(s: string; nl: bool = true) =
-  fabEcho(fgGreen, s, newline = nl)
+  fabEcho(fgGreen, styled = s, newline = nl)
 
 template red*(s: string; nl: bool = true) =
-  fabEcho(fgRed, s, newline = nl)
+  fabEcho(fgRed, styled = s, newline = nl)
 
 template white*(s: string; nl: bool = true) =
-  fabEcho(fgWhite, s, newline = nl)
+  fabEcho(fgWhite, styled = s, newline = nl)
 
 # # TODO: orange is bold yellow lol
 # proc orange*(s: string): string =
@@ -56,19 +56,19 @@ template white*(s: string; nl: bool = true) =
 
 # labels
 template que*(s: string) =
-  fabEcho(fgBlue, "[?]", s, newline = true)
+  fabEcho(fgBlue, styled = "[?]", unstyled = s, newline = true)
 
 template info*(s: string) =
-  fabEcho(fgYellow, "[!]", s, newline = true)
+  fabEcho(fgYellow, styled = "[!]", unstyled = s, newline = true)
 
 template bad*(s: string) =
-  fabEcho(fgRed, "[!]", s, newline = true)
+  fabEcho(fgRed, styled = "[!]", unstyled = s, newline = true)
 
 template good*(s: string) =
-  fabEcho(fgGreen, "[+]", s, newline = true)
+  fabEcho(fgGreen, styled = "[+]", unstyled = s, newline = true)
 
 template run*(s: string) =
-  fabEcho(fgWhite, "[~]", s, newline = true)
+  fabEcho(fgWhite, styled = "[~]", unstyled = s, newline = true)
 
 when isMainModule:
   echo "Colors:"
