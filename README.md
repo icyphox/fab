@@ -5,16 +5,18 @@ Fab is a really cool text formatting package for Nim. Using Fab is super easy, i
 ```Nim
 import fab
 
-echo blue("hey i'm blue!")
-echo bold("this is bold text")
-echo que("what?")
+blue("hey i'm blue!")
+bold("this is bold text")
+que("what?")
 ```
 
 ## Installation
 ```console
 $ nimble install fab
 ```
-**NOTE**: There is no Windows support (yet).
+
+## Screenshot
+![screenshot](/screenshot.png)
 
 ## Colors
 ![colors](https://xix.ph0x.me/colorss.png)
