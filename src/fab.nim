@@ -1,6 +1,6 @@
 import terminal
 
-template fabEcho*(fg: ForegroundColor; styled: string; unstyled: string = ""; newline: bool = true) =
+template fabEcho*(fg: ForegroundColor; styled, unstyled: string = ""; newline: bool = true) =
   setForeGroundColor(fg)
   stdout.write(styled)
   resetAttributes()
@@ -12,23 +12,20 @@ template fabEcho*(fg: ForegroundColor; styled: string; unstyled: string = ""; ne
 const reset = "\e[0m"
 
 # colors
-# template blue*(s: string; newline: bool = true) =
-  # fabEcho(fgBlue, s, newline)
+template blue*(s: string; nl: bool = true) =
+  fabEcho(fgBlue, s, newline = nl)
 
-# proc blue*(s: string): string =
-#   result = "\e[34m" & s & reset
+template yellow*(s: string; nl: bool = true) =
+  fabEcho(fgYellow, s, newline = nl)
 
-# proc yellow*(s: string): string =
-#   result = "\e[33m" & s & reset
+template green*(s: string; nl: bool = true) =
+  fabEcho(fgGreen, s, newline = nl)
 
-# proc green*(s: string): string =
-#   result = "\e[32m" & s & reset
+template red*(s: string; nl: bool = true) =
+  fabEcho(fgRed, s, newline = nl)
 
-# proc red*(s: string): string =
-#   result = "\e[31m" & s & reset
-
-# proc white*(s: string): string =
-#   result = "\e[97m" & s & reset
+template white*(s: string; nl: bool = true) =
+  fabEcho(fgWhite, s, newline = nl)
 
 # # TODO: orange is bold yellow lol
 # proc orange*(s: string): string =
@@ -75,12 +72,12 @@ template run*(s: string) =
 
 when isMainModule:
   echo "Colors:"
-  # blue("this is blue")
-  # blue("this is blue", false); blue("this is blue", false)
-  # echo red("this is green")
-  # echo yellow("this is yellow")
-  # echo green("this is green")
-  # echo white("this is white")
+  blue("this is blue")
+  blue("this is blue", false); blue(" this is blue")
+  red("this is green")
+  yellow("this is yellow")
+  green("this is green")
+  white("this is white")
   # echo orange("this is orange")
   # echo purple("this is purple")
   # echo black("this is black")
