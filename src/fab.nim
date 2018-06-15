@@ -45,17 +45,17 @@ proc strike*(s: string): string =
 
 # labels
 proc que*(s: string): string =
-  result = "\e[34m[?]" & reset & s
+  result = "\e[34m[?] " & reset & s
 
 proc info*(s: string): string =
-  result = "\e[33m[*]" & reset & s
+  result = "\e[33m[*] " & reset & s
 
 proc bad*(s: string): string =
-  result = "\e[31m[!]" & reset & s
+  result = "\e[31m[!] " & reset & s
 
 proc good*(s: string): string =
-  result = "\e[32m[+]" & reset & s
+  result = "\e[32m[+] " & reset & s
 
 proc run*(s: string): string =
-  result = "\e[97m[~]" & reset & s
+  result = "\e[97m[~] " & reset & s
 
