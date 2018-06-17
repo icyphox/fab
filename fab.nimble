@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.3.1"
+version       = "0.4.0"
 author        = "Anirudh"
 description   = "Print fabulously in your terminal"
 license       = "MIT"
