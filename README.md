@@ -44,3 +44,6 @@ que(), info(), run(), bad(), good()
 
 ## Inspiration
 This project was heavily inspired by [@s0md3v](https://github.com/s0me3v)'s [Hue](https://github.com/s0md3v/hue).
+
+## Credits
+Thanks a bunch to [@kaushalmodi](https://github.com/kaushalmodi) for the complete rewrite. It's all pretty much his now.
