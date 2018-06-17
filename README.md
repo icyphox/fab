@@ -16,7 +16,7 @@ $ nimble install fab
 ```
 
 ## Screenshot
-![screenshot](/screenshot.png)
+![screenshot](https://xix.ph0x.me/fab_screen.png)
 
 ## Colors
 ![colors](https://xix.ph0x.me/colorss.png)
