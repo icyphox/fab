@@ -1,61 +1,164 @@
-const reset = "\e[0m"
+import terminal
+
+# Style = enum
+#   styleBright = 1,            ## bright text
+#   styleDim,                   ## dim text
+#   styleUnknown,               ## unknown
+#   styleUnderscore = 4,        ## underscored text
+#   styleBlink,                 ## blinking/bold text
+#   styleReverse = 7,           ## unknown
+#   styleHidden                 ## hidden text
+
+# ForegroundColor = enum
+#   fgBlack = 30,               ## black
+#   fgRed,                      ## red
+#   fgGreen,                    ## green
+#   fgYellow,                   ## yellow
+#   fgBlue,                     ## blue
+#   fgMagenta,                  ## magenta
+#   fgCyan,                     ## cyan
+#   fgWhite                     ## white
+
+template fabEcho*(s: string; fg: ForegroundColor; styleSet: set[Style] = {}; newline = true; brightFg = false) =
+  setForeGroundColor(fg, brightFg)
+  s.writeStyled(styleSet)
+  resetAttributes()
+  if newline:
+    echo ""
 
 # colors
-proc blue*(s: string): string =
-  result = "\e[34m" & s & reset
+template blue*(s: string; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fgBlue, sty, nl)
 
-proc yellow*(s: string): string =
-  result = "\e[33m" & s & reset
+template yellow*(s: string; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fgYellow, sty, nl)
 
-proc green*(s: string): string =
-  result = "\e[32m" & s & reset
+template green*(s: string; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fgGreen, sty, nl)
 
-proc red*(s: string): string =
-  result = "\e[31m" & s & reset
+template red*(s: string; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fgRed, sty, nl)
 
-proc white*(s: string): string =
-  result = "\e[97m" & s & reset
+template white*(s: string; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fgWhite, sty, nl)
 
-# TODO: orange is bold yellow lol
-proc orange*(s: string): string =
-  result = "\e[93;1m" & s & reset
+template purple*(s: string; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fgMagenta, sty, nl)
 
-proc purple*(s: string): string =
-  result = "\e[35m" & s & reset
+template cyan*(s: string; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fgCyan, sty, nl)
 
-proc black*(s: string): string =
-  result = "\e[30;1m" & s & reset
+template black*(s: string; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fgBlack, sty, nl)
 
-proc cyan*(s: string): string =
-  result = "\e[36m" & s & reset
+template grey*(s: string; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fgBlack, sty, nl, brightFg = true)
+
+template orange*(s: string; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fgYellow, sty, nl, brightFg = true)
 
 # styles
-proc bold*(s: string): string =
-  result = "\e[1m" & s & reset
+template bold*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fg, {styleBright} + sty, nl)
 
-proc italic*(s: string): string =
-  result = "\e[3m" & s & reset
+# https://github.com/nim-lang/Nim/pull/8048
+template italic*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  # fabEcho(s, fg, {styleItalic} + sty, nl)
+  fabEcho(s, fg, {styleUnknown} + sty, nl)
 
-proc under*(s: string): string =
-  result = "\e[4m" & s & reset
+template reverse*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fg, {styleReverse} + sty, nl)
 
-proc strike*(s: string): string =
-  result = "\e[9m" & s & reset
+template under*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fg, {styleUnderscore} + sty, nl)
+
+template blink*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fg, {styleBlink} + sty, nl)
+
+template dim*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fg, {styleDim} + sty, nl)
+
+template hidden*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fg, {styleHidden} + sty, nl)
+
+# https://github.com/nim-lang/Nim/pull/8048
+# template strike*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+#   fabEcho(s, fg, {styleStrikethrough} + sty, nl)
 
 
 # labels
-proc que*(s: string): string =
-  result = blue("[?] ") & reset & s
+template fabLabelEcho*(label: string; lFg: ForegroundColor; s: string; sFg: ForegroundColor; styleSet: set[Style] = {}; newline = true; brightFg = false) =
+  fabEcho(label, lFg, styleSet, false, brightFg)
+  stdout.write(" ")
+  fabEcho(s, sFg, styleSet, false, brightFg)
+  if newline:
+    echo ""
 
-proc info*(s: string): string =
-  result = yellow("[*] ") & reset & s
+template que*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabLabelEcho("[?]", fgBlue, s, fg, sty, nl)
 
-proc bad*(s: string): string =
-  result = red("[!] ") & reset & s
+template info*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabLabelEcho("[!]", fgYellow, s, fg, sty, nl)
 
-proc good*(s: string): string =
-  result = green("[+] ") & reset & s
+template bad*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabLabelEcho("[!]", fgRed, s, fg, sty, nl)
 
-proc run*(s: string): string =
-  result = white("[~] ") & reset & s
+template good*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabLabelEcho("[+]", fgGreen, s, fg, sty, nl)
 
+template run*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabLabelEcho("[~]", fgWhite, s, fg, sty, nl)
+
+when isMainModule:
+  echo ""
+  bold "COLORS"
+  blue("this is blue")
+  echo "ordinary text"
+  blue("this is bold blue", sty = {styleBright})
+
+  blue("this is blue", nl = false) # no newline
+  yellow(" this is bold yellow ", sty = {styleBright}, nl = false) # no newline
+  blue("this is bold and underlined blue", sty = {styleBright, styleUnderscore}, nl = false) # no newline
+  blue(" this is blue")
+
+  red("this is red")
+  yellow("this is yellow")
+  green("this is green")
+  white("this is white")
+  white("this is white in reverse", sty = {styleReverse})
+  purple("this is purple")
+  cyan("this is cyan")
+  black("this is black", nl = false); echo "<-- text in black foreground to the left"
+  grey("this is grey")
+  orange("""this is orange?/"bright yellow"""")
+
+  echo ""
+  bold "STYLES"
+  dim("this is dim")
+  yellow("this is yellow")
+  dim("this is yellow and dim", fg = fgYellow)
+  echo "this is regular"
+  bold("this is bold")
+  italic("this is italics/shows up reversed on terminals not supporting italics")
+  reverse("this is reverse")
+  under("this is underlined")
+  blink("this is blinking!")
+  italic("this is italics and bold!", sty = {styleBright})
+  dim("this is dim and reverse!", sty = {styleReverse})
+  bold("this is bold and reverse and red!!", fg = fgRed, sty = {styleReverse})
+
+  white("before hidden text 'abcdefghijklm'", nl = false) # no newline
+  hidden("abcdefghijklm", nl = false) # no newline
+  white("after hidden text")
+
+  # echo strike("this is striked")
+
+  echo ""
+  bold "LABELS"
+  que("what?")
+  info("fyi")
+  bad("you suck")
+  bad("everything in red bold", fg = fgRed, sty = {styleBright})
+  good("yay!")
+  run("hacking in progress...")
+  run("everything in bold", sty = {styleBright})
