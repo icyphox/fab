@@ -57,14 +57,13 @@ template grey*(s: string; sty: set[Style] = {}; nl = true) =
 template orange*(s: string; sty: set[Style] = {}; nl = true) =
   fabEcho(s, fgYellow, sty, nl, brightFg = true)
 
+
 # styles
 template bold*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
   fabEcho(s, fg, {styleBright} + sty, nl)
 
-# https://github.com/nim-lang/Nim/pull/8048
 template italic*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
-  # fabEcho(s, fg, {styleItalic} + sty, nl)
-  fabEcho(s, fg, {styleUnknown} + sty, nl)
+  fabEcho(s, fg, {styleItalic} + sty, nl)
 
 template reverse*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
   fabEcho(s, fg, {styleReverse} + sty, nl)
@@ -81,9 +80,8 @@ template dim*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl
 template hidden*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
   fabEcho(s, fg, {styleHidden} + sty, nl)
 
-# https://github.com/nim-lang/Nim/pull/8048
-# template strike*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
-#   fabEcho(s, fg, {styleStrikethrough} + sty, nl)
+template strike*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
+  fabEcho(s, fg, {styleStrikethrough} + sty, nl)
 
 
 # labels
@@ -146,12 +144,11 @@ when isMainModule:
   italic("this is italics and bold!", sty = {styleBright})
   dim("this is dim and reverse!", sty = {styleReverse})
   bold("this is bold and reverse and red!!", fg = fgRed, sty = {styleReverse})
+  strike("this is striked")
 
   white("before hidden text 'abcdefghijklm'", nl = false) # no newline
   hidden("abcdefghijklm", nl = false) # no newline
   white("after hidden text")
-
-  # echo strike("this is striked")
 
   echo ""
   bold "LABELS"
