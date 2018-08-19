@@ -42,6 +42,45 @@ bold(), italics(), strike(), under()
 que(), info(), run(), bad(), good()
 ```
 
+```nim
+Style
+  styleBright,     # bright text
+  styleDim,        # dim text
+  styleUnknown,    # unknown
+  styleUnderscore, # underscored text
+  styleBlink,      # blinking/bold text
+  styleHidden      # hidden text
+```
+
+#### Example:
+```nim
+blue("this is bold and blue", sty = {styleBright})
+```
+
+```nim
+ForegroundColor
+  fgBlack,    # black
+  fgRed,      # red
+  fgGreen,    # green
+  fgYellow,   # yellow
+  fgBlue,     # blue
+  fgMagenta,  # magenta
+  fgCyan,     # cyan
+  fgWhite     # white
+```
+
+#### Example:
+```nim
+bold("this is bold and red", fg = fgRed)
+```
+
+#### More Examples:
+```nim
+blue("this is bold and underlined blue", sty = {styleBright, styleUnderscore}, nl = false) # no newline
+
+dim("this is yellow and dim", fg = fgYellow)
+```
+
 ## Inspiration
 This project was heavily inspired by [@s0md3v](https://github.com/s0me3v)'s [Hue](https://github.com/s0md3v/hue).
 
