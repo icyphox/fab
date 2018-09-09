@@ -16,16 +16,16 @@ $ nimble install fab
 ```
 
 ## Screenshot
-![screenshot](https://xix.ph0x.me/fab_screen.png)
+![screenshot](https://0x0.st/swP6.png)
 
 ## Colors
-![colors](https://xix.ph0x.me/colorss.png)
+![colors](https://0x0.st/swPI.png)
 
 ## Styles
-![styles](https://xix.ph0x.me/styles.png)
+![styles](https://0x0.st/swPl.png)
 
 ## Labels
-![labels](https://xix.ph0x.me/labels.png)
+![labels](https://0x0.st/swP0.png)
 
 ### Color procs
 ```
@@ -52,7 +52,7 @@ Style
   styleHidden      # hidden text
 ```
 
-#### Example:
+#### Example
 ```nim
 blue("this is bold and blue", sty = {styleBright})
 ```
@@ -69,12 +69,12 @@ ForegroundColor
   fgWhite     # white
 ```
 
-#### Example:
+#### Example
 ```nim
 bold("this is bold and red", fg = fgRed)
 ```
 
-#### More Examples:
+#### More examples
 ```nim
 blue("this is bold and underlined blue", sty = {styleBright, styleUnderscore}, nl = false) # no newline
 
