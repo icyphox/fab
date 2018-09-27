@@ -44,8 +44,7 @@ proc bold*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = 
 
 # https://github.com/nim-lang/Nim/pull/8048
 proc italic*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
-  # fabEcho(s, fg, {styleItalic} + sty, nl)
-  fabEcho(s, fg, {styleUnknown} + sty, nl)
+  fabEcho(s, fg, {styleItalic} + sty, nl)
 
 proc reverse*(s: string; fg: ForegroundColor = fgWhite; sty: set[Style] = {}; nl = true) =
   fabEcho(s, fg, {styleReverse} + sty, nl)
