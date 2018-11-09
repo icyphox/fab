@@ -1,4 +1,7 @@
-# fab
+<h1 align="center">
+  <img src="https://x.ph0x.me/cvqaU.png" width="280">
+</h1>
+
 > Print fabulously in your terminal (in Nim).
 
 Fab is a really cool text formatting package for Nim. Using Fab is super easy, it's as simple as:
