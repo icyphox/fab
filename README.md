@@ -84,5 +84,11 @@ dim("this is yellow and dim", fg = fgYellow)
 ## Inspiration
 This project was heavily inspired by [@s0md3v](https://github.com/s0me3v)'s [Hue](https://github.com/s0md3v/hue).
 
+## Contributing
+Bad code? New feature in mind? Open an issue. Better still, learn [Nim](https://nim-lang.org/documentation.html) and shoot a PR :sparkles:
+
 ## Credits
 Thanks a bunch to [@kaushalmodi](https://github.com/kaushalmodi) for the complete rewrite. It's all pretty much his now.
+
+## License
+MIT © Anirudh Oppiliappan
