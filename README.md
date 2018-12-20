@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://x.ph0x.me/cvqaU.png" width="280">
+  <img src="https://x.icyphox.sh/cvqaU.png" width="280">
 </h1>
 
 > Print fabulously in your terminal (in Nim).
