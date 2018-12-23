@@ -94,4 +94,4 @@ Bad code? New feature in mind? Open an issue. Better still, learn [Nim](https://
 Thanks a bunch to [@kaushalmodi](https://github.com/kaushalmodi) for the complete rewrite. It's all pretty much his now.
 
 ## License
-MIT © Anirudh Oppiliappan
+MIT © [Anirudh Oppiliappan](https://icyphox.sh)
